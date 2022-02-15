@@ -1,3 +1,4 @@
+db = db.getSiblingDB('socket');
 db.createUser(
   {
       user: "andre",
