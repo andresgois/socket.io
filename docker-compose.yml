@@ -12,6 +12,20 @@ services:
       MONGO_INITDB_DATABASE: rocketsoket
     volumes:
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    container_name: rocketsoketdb_express
+    ports:
+      - 8081:8081
+    depends_on: 
+      - mongo
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: andre
+      ME_CONFIG_MONGODB_ADMINPASSWORD: rocketsoketdb
+      ME_CONFIG_MONGODB_URL: mongodb://andre:rocketsoketdb@mongo:27017/
+
   app:
     build: .
     container_name: rocketsoketapp
@@ -20,8 +34,12 @@ services:
       - 3000:3000
     volumes: 
       - .:/usr/app
+    links: 
+      - mongo
     depends_on:
       - mongo
 
 
 #https://stackoverflow.com/questions/42912755/how-to-create-a-db-for-mongodb-container-on-start-up
+# mongo -u usuário-da-base -p senha-da-base host-de-conexao/nome-da-base
+#mongodb://andre:rocketsoketdb@rocketsoketbanco:27017/
