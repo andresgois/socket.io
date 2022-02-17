@@ -23,6 +23,13 @@
 
 [Documentação Socket](https://socket.io/docs/v4/)
 
+## Docker
+- **Criando a imagem**
+- docker build . -t rocketsoket_app
+- **Criando containers**
+- docker-compose
+- **Força a recriação do container**
+- docker-compose up --force-recreate
 ## Banco
 
 ### Tabelas e Propriedades
@@ -45,6 +52,8 @@
 | name        | roomId      |           |
 | avatar      | created_at  |           
 
+## Container do APP
+- docker exec -it rocketsoketapp sh
 #### Referências
 - **Ajuda na construção do docker-compose**
 - https://stackoverflow.com/questions/42912755/how-to-create-a-db-for-mongodb-container-on-start-up.
