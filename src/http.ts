@@ -7,13 +7,20 @@ import mongoose, { ConnectOptions } from "mongoose";
 
 const app = express();
 
+
 const server = createServer(app);
 
+//mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://andre:rocketsoketdb@mongo:27017/rocketsoket", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  } as ConnectOptions).then((r) => {
+    console.log('connection to database established 1')
+  }).catch(err=>{
+    console.log(`db error ${err}`);
+  })
 
-mongoose.connect("mongodb://localhost/rocketsoket", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-} as ConnectOptions)
+
 
 app.use(express.static(path.join(__dirname, "..","public")));
 
@@ -25,7 +32,7 @@ io.on("connection", (socket) => {
 
 app.get("/", (req, res) => {
   return res.json({
-    message: "Hello WebSocket"
+    message: "Hello WebSocket 2 "
   })
 })
 
