@@ -15,7 +15,7 @@ mongoose.connect("mongodb://andre:rocketsoketdb@mongo:27017/rocketsoket", {
     useNewUrlParser: true,
     useUnifiedTopology: true
   } as ConnectOptions).then((r) => {
-    console.log('connection to database established 1')
+    console.log('connection to database established')
   }).catch(err=>{
     console.log(`db error ${err}`);
   })

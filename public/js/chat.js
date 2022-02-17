@@ -19,16 +19,13 @@ function onLoad() {
   <strong id="user_logged">${name}</strong> 
   `
 
-  console.log(name, avatar, email);
-  console.log('Reaload')
-
   socket.emit("start", {
     email,
     name,
     avatar,
   });
 
-  socket.on("new_users", user => {
+  socket.on("new_users", (user) => {
     const existInDiv = document.getElementById(`user_${user._id}`);
 
     if(!existInDiv){
@@ -60,9 +57,9 @@ function addUser(user){
   >
     <img
     class="nav_avatar"
-    src=${avatar}
+    src=${user.avatar}
     />
-    ${name}
+    ${user.name}
     </li> 
     `
   }
