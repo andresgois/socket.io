@@ -27,13 +27,17 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://andre:rocketsoketdb@mongo:27017/
 
   app:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    #env_file: .env
+    #working_dir: /home/node/app
     container_name: rocketsoketapp
     restart: always
     ports: 
       - 3000:3000
     volumes: 
-      - .:/usr/app
+      - ./:/home/node/app
     links: 
       - mongo
     depends_on:

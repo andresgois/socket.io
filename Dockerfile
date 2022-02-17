@@ -1,8 +1,17 @@
 FROM node:14.18-alpine
 
-WORKDIR /usr/app
+ARG APP=app
+ARG HOME=/home/node
 
-COPY package.json ./
+RUN mkdir -p ${HOME}/${APP}
+
+COPY package*.json ./
+
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+
+WORKDIR ${HOME}/${APP}
+
+USER node
 
 RUN npm install
 

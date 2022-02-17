@@ -1,4 +1,4 @@
-db = db.getSiblingDB('socket');
+db = db.getSiblingDB('rocketsoket');
 db.createUser(
   {
       user: "andre",
@@ -11,3 +11,4 @@ db.createUser(
       ]
   }
 );
+db.createCollection("Acessos");
