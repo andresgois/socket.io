@@ -1,5 +1,6 @@
 const socket = io("http://localhost:3000");
 let idChatRoom = "";
+let roomId = "";
 
 /*socket.on("chat_iniciado", (data) => {
   console.log(data);
@@ -56,13 +57,26 @@ function addUser(user){
     idUser="${user._id}"
   >
     <img
-    class="nav_avatar"
-    src=${user.avatar}
+      class="nav_avatar"
+      src=${user.avatar}
     />
     ${user.name}
-    </li> 
+  </li> 
     `
+}
+
+document.getElementById("users_list").addEventListener("click", (e) => {
+  if(e.target && e.target.matches("li.user_name_list")){
+    const idUser = e.target.getAttribute("idUser");
+    console.log("idUser: ",idUser)
+
+    socket.emit("start_chat", {idUser},  (data) => {
+      console.log(data);
+      roomId = data.room.idChatRoom
+    });
   }
+
+});
 
 
 onLoad();
